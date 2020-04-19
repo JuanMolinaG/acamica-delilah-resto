@@ -13,7 +13,7 @@ app.use( cors() );
 app.get( '/v1/users', ( req, res ) => {
     Users.findAll({
         attributes: { exclude: ['password'] }
-    }).then(users => {
+    }).then( users => {
         res.json( users );
     }).catch( error => {
         console.log('error :', error);
@@ -24,11 +24,12 @@ app.post( '/v1/users', ( req, res ) => {
     res.send( req.body );
 });
 
-app.post( '/v1/login', ( req, res ) => {
+app.post( '/v1/login', async ( req, res ) => {
     const { username, password } = req.body;
     if ( username && password ) {
+        const token = await userToken.generateToken( username )
         res.json({
-            access_token: userToken.generateToken( username ),
+            access_token: token,
             token_type: 'Bearer',
             expires: "24 hours"
         });
@@ -63,8 +64,21 @@ const authenticateUser = ( req, res, next ) => {
     }
 }
 
-app.get( '/v1/orders', authenticateUser, (req, res) => {
-    res.send( `Página autenticada ${ req.user.username }` );
+const validateRole = ( req, res, next ) => {
+    const role = req.user.userData.role;
+
+    if ( role === 'administrator' ) {
+        return next();
+    } else {
+        res.status( 403 )
+            .json({
+                error: 'You do not have permission to access this'
+            });
+    }
+}
+
+app.get( '/v1/orders', authenticateUser, validateRole, (req, res) => {
+    res.send( `Página autenticada ${ req.user.userData.username }` );
 });
 
 app.get( '/v1/error', ( req, res ) => {
