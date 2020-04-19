@@ -1,7 +1,8 @@
 const express = require( 'express' );
 const bodyParser = require( 'body-parser' );
-const Token = require( './helpers/jwt/jwtGenerator' );
 const cors = require( 'cors' );
+const Token = require( './helpers/jwt/jwtGenerator' );
+const Users = require( './models/Users' );
 
 const userToken = new Token();
 
@@ -10,7 +11,13 @@ app.use( bodyParser.json() );
 app.use( cors() );
 
 app.get( '/v1/users', ( req, res ) => {
-    res.send( 'Hola desde Express' );
+    Users.findAll({
+        attributes: { exclude: ['password'] }
+    }).then(users => {
+        res.json( users );
+    }).catch( error => {
+        console.log('error :', error);
+    })
 });
 
 app.post( '/v1/users', ( req, res ) => {
@@ -21,7 +28,9 @@ app.post( '/v1/login', ( req, res ) => {
     const { username, password } = req.body;
     if ( username && password ) {
         res.json({
-            token: userToken.generateToken( username )
+            access_token: userToken.generateToken( username ),
+            token_type: 'Bearer',
+            expires: "24 hours"
         });
     } else {
         res.status( 400 ).json({
@@ -42,7 +51,7 @@ const authenticateUser = ( req, res, next ) => {
             }
         } catch (error) {
             res.status( 401 ).json({
-                error: 'Invalid token'
+                error: 'Invalid token or expired'
             });
         }
     } else {
