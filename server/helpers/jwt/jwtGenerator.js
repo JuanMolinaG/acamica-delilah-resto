@@ -10,7 +10,7 @@ module.exports = class Token{
     generateToken( username ) {
         let generatedToken = this.jwt.sign({
             username
-        }, this.secret_key);
+        }, this.secret_key, { expiresIn: '24h'});
         
         return generatedToken;
     }
