@@ -2,6 +2,7 @@ const express = require( 'express' );
 const bodyParser = require( 'body-parser' );
 const cors = require( 'cors' );
 const Token = require( './helpers/jwt/jwtGenerator' );
+const { authenticateUser, validateRole } = require( './helpers/middlewares' );
 const Users = require( './models/Users' );
 
 const userToken = new Token();
@@ -39,43 +40,6 @@ app.post( '/v1/login', async ( req, res ) => {
         });
     }
 });
-
-const authenticateUser = ( req, res, next ) => {
-    const receivedToken = req.headers.authorization.split(' ')[1];
-    if ( receivedToken ) {
-        try {
-            const verifiedToken = userToken.verifyToken( receivedToken );
-    
-            if ( verifiedToken ) {
-                req.user = verifiedToken;
-                return next();
-            }
-        } catch (error) {
-            res.status( 401 ).json({
-                error: 'Invalid token or expired'
-            });
-        }
-    } else {
-        res.status( 401 )
-            .set( 'WWW-Authenticate', 'Bearer realm="token received after login"')
-            .json({
-                error: 'Token not provided'
-            })
-    }
-}
-
-const validateRole = ( req, res, next ) => {
-    const role = req.user.userData.role;
-
-    if ( role === 'administrator' ) {
-        return next();
-    } else {
-        res.status( 403 )
-            .json({
-                error: 'You do not have permission to access this'
-            });
-    }
-}
 
 app.get( '/v1/orders', authenticateUser, validateRole, (req, res) => {
     res.send( `Página autenticada ${ req.user.userData.username }` );
