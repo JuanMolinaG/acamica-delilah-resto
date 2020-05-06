@@ -58,6 +58,7 @@ app.use(function(err, req, res, next) {
 });
 
 
-app.listen( 3000, () => {
-    console.log( 'Servidor iniciado' );
+const port = process.env.PORT || 3000;
+app.listen( port, () => {
+    console.log( `Server started at ${ port } port` );
 });
