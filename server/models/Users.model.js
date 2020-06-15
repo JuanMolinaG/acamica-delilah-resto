@@ -30,7 +30,7 @@ const Users = dbConnection.define('users', {
     type: Sequelize.DATE,
     defaultValue: Sequelize.NOW,
   },
-  role: {
+  role_id: {
     type: Sequelize.INTEGER,
     defaultValue: 2,
   },

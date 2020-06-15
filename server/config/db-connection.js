@@ -1,13 +1,12 @@
 const Sequelize = require('sequelize');
-
 const sequelize = new Sequelize(
-  process.env.DATABASENAME,
-  process.env.DBUSERNAME,
+  process.env.DBNAME,
+  process.env.DBUSER,
   process.env.DBPASSWORD,
   {
     host: process.env.DBHOST,
     port: process.env.DBPORT,
-    dialect: 'mysql',
+    dialect: process.env.DBDIALECT,
     define: {
       timestamps: false,
     },
