@@ -8,20 +8,23 @@ const registerValidation = (data) => {
     email: Joi.string().min(6).max(60).required().email(),
     phone: Joi.string().min(7).max(20).required(),
     address: Joi.string().min(6).max(60).required(),
-    password: Joi.string().min(5).max(60).required(),
+    password: Joi.string().min(6).max(60).required(),
   });
 
   return schema.validate(data);
 };
 
 // Login validation
-const loginEmailValidation = (data) => {
+const loginValidation = (data) => {
   const schema = Joi.object({
-    email: Joi.string().min(6).max(50).required().email(),
-    password: Joi.string().min(6).max(50).required(),
+    username_email: Joi.string().min(6).max(60).required(),
+    password: Joi.string().min(6).max(60).required(),
   });
 
   return schema.validate(data);
 };
 
-module.exports = { registerValidation, loginEmailValidation };
+module.exports = {
+  registerValidation,
+  loginValidation,
+};
