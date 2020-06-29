@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const dbConnection = require('../config/db-connection');
 
-const Users = dbConnection.define('users', {
+const User = dbConnection.define('users', {
   username: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -26,14 +26,10 @@ const Users = dbConnection.define('users', {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  register_date: {
-    type: Sequelize.DATE,
-    defaultValue: Sequelize.NOW,
-  },
   role_id: {
     type: Sequelize.INTEGER,
     defaultValue: 2,
   },
 });
 
-module.exports = Users;
+module.exports = User;

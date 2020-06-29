@@ -8,7 +8,8 @@ const sequelize = new Sequelize(
     port: process.env.DBPORT,
     dialect: process.env.DBDIALECT,
     define: {
-      timestamps: false,
+      timestamps: true,
+      underscored: true,
     },
     pool: {
       max: 5,

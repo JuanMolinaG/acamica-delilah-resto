@@ -1,7 +1,7 @@
-const Users = require('../models/Users.model');
+const User = require('../models/User.model');
 
 const getUserBy = (field, value) => {
-  return Users.findAll({
+  return User.findAll({
     where: {
       [field]: value,
     },
