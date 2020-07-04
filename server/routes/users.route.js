@@ -32,6 +32,6 @@ router.post('/login', loginIsValid, async (req, res) => {
   const token = jwt.sign({ id: req.user.id }, process.env.TOKEN_SECRET, {
     // expiresIn: '24h',
   });
-  res.header('auth-token', token).json({ token: token, type: 'Bearer' });
+  res.header('auth-token', token).json({ token: token });
 });
 module.exports = router;
