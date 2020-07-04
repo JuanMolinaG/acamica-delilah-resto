@@ -13,6 +13,7 @@ router.post('/', tokenIsValid, userIsAdmin, productIsValid, (req, res) => {
   const product = {
     name: req.body.name,
     price: req.body.price,
+    imageUrl: req.body.imageUrl,
   };
 
   Product.create(product).then((savedProduct) => {

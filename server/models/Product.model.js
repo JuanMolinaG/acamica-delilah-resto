@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const dbConnection = require('../config/db-connection');
+const sequelize = require('../config/db-connection');
 
 const Product = dbConnection.define('products', {
   name: {
@@ -8,6 +9,10 @@ const Product = dbConnection.define('products', {
   },
   price: {
     type: Sequelize.INTEGER,
+    allowNull: false,
+  },
+  imageUrl: {
+    type: Sequelize.STRING,
     allowNull: false,
   },
 });
