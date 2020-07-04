@@ -21,15 +21,17 @@ router.post('/', tokenIsValid, userIsAdmin, productIsValid, (req, res) => {
 });
 
 router.get('/', tokenIsValid, (req, res) => {
-  Product.findAll({
-    attributes: ['id', 'name', 'price'],
-  })
+  Product.findAll({})
     .then((products) => {
       res.send(products);
     })
     .catch((error) => {
       console.log('error:', error);
     });
+});
+
+router.get('/:productId', tokenIsValid, productExists, (req, res) => {
+  return res.send(req.product);
 });
 
 router.put(

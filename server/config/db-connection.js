@@ -11,6 +11,12 @@ const sequelize = new Sequelize(
       timestamps: true,
       underscored: true,
     },
+    dialectOptions: {
+      useUTC: false, //for reading from database
+      dateStrings: true,
+      typeCast: true,
+    },
+    timezone: '-05:00',
     pool: {
       max: 5,
       min: 0,

@@ -15,6 +15,8 @@ const productExists = async (req, res, next) => {
   const productById = await getProductBy('id', productId);
   if (!productById) return res.status(400).json({ error: 'Product not found' });
 
+  req.product = productById;
+
   next();
 };
 
