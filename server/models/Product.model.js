@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize');
 const dbConnection = require('../config/db-connection');
-const sequelize = require('../config/db-connection');
 
 const Product = dbConnection.define('products', {
   name: {
