@@ -15,8 +15,16 @@ const Order = dbConnection.define('Orders', {
     allowNull: false,
   },
   status: {
-    type: Sequelize.STRING,
+    type: Sequelize.ENUM,
     allowNull: false,
+    values: [
+      'Nuevo',
+      'Confirmado',
+      'Preparando',
+      'Enviando',
+      'Entregado',
+      'Cancelado',
+    ],
   },
 });
 
