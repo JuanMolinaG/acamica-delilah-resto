@@ -46,6 +46,7 @@ router.put(
     const product = {
       name: req.body.name,
       price: req.body.price,
+      imageUrl: req.body.imageUrl,
     };
     Product.update(product, {
       where: {
