@@ -21,7 +21,7 @@ Install the dependencies:
 npm install
 ```
 
-Next import the delilah_resto.sql file in your mysql installation and replace the database connection credentials with yours in server/.env file.
+Next import the server/delilah_resto.sql file in your mysql installation and replace the database connection credentials with yours in server/.env file.
 
 ## Start and Watch
 
