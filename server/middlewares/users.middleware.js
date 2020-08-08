@@ -5,6 +5,7 @@ const {
   loginValidation,
 } = require('../helpers/usersDataValidation');
 const { getUserBy } = require('../helpers/users.querys');
+const { getOrderBy } = require('../helpers/orders.querys');
 
 // Validate registration data
 const registerIsValid = async (req, res, next) => {
@@ -79,9 +80,29 @@ const userIsAdmin = async (req, res, next) => {
   next();
 };
 
+// Validate if user is admin or buyer
+const userIsAdminOrBuyer = async (req, res, next) => {
+  const userId = req.user.id;
+
+  // Check if user is admin
+  const userById = await getUserBy('id', userId);
+  if (userById.role_id !== 1) {
+    const orderId = req.params.orderId;
+
+    const orderById = await getOrderBy('id', orderId);
+
+    if (orderById.userId !== userId)
+      return res
+        .status(403)
+        .json({ error: 'You only can see your own orders' });
+  }
+  next();
+};
+
 module.exports = {
   tokenIsValid,
   userIsAdmin,
   registerIsValid,
   loginIsValid,
+  userIsAdminOrBuyer,
 };

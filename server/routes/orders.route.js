@@ -4,13 +4,18 @@ const Order_Product = require('../models/Order_Product.model');
 const Product = require('../models/Product.model');
 const {
   orderIsValid,
+  orderExist,
   productsExists,
 } = require('../middlewares/orders.middlewares');
 const {
   tokenIsValid,
   userIsAdmin,
+  userIsAdminOrBuyer,
 } = require('../middlewares/users.middleware');
-const { buildOrdersResponse } = require('../helpers/orders.operations');
+const {
+  buildOrdersResponse,
+  buildSingleOrderResponse,
+} = require('../helpers/orders.operations');
 
 router.post('/', tokenIsValid, orderIsValid, productsExists, (req, res) => {
   const order = {
@@ -65,5 +70,40 @@ router.get('/', tokenIsValid, userIsAdmin, (req, res) => {
       console.log('error:', error);
     });
 });
+
+router.get(
+  '/:orderId',
+  tokenIsValid,
+  orderExist,
+  userIsAdminOrBuyer,
+  (req, res) => {
+    const orderId = req.params.orderId;
+    Order.findAll({
+      attributes: ['status', 'id', 'paymentMethodId', 'userId'],
+      where: {
+        id: orderId,
+      },
+      include: [
+        {
+          model: Order_Product,
+          attributes: ['productQuantity'],
+          include: [
+            {
+              model: Product,
+              attributes: ['id', 'name', 'price', 'imageUrl'],
+            },
+          ],
+        },
+      ],
+    })
+      .then(async (result) => {
+        const orderResponse = await buildSingleOrderResponse(result);
+        res.send(orderResponse);
+      })
+      .catch((error) => {
+        console.log('error:', error);
+      });
+  }
+);
 
 module.exports = router;

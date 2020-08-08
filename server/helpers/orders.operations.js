@@ -13,7 +13,7 @@ const buildOrdersResponse = (ordersData) => {
         orderItem.productsValue = order.order_products.map((product) => {
           return product.productQuantity * product.product.price;
         });
-        orderItem.Total = orderItem.productsValue.reduce((acc, curVal) => {
+        orderItem.total = orderItem.productsValue.reduce((acc, curVal) => {
           return acc + curVal;
         });
         delete orderItem.productsValue;
@@ -29,4 +29,26 @@ const buildOrdersResponse = (ordersData) => {
   });
 };
 
-module.exports = { buildOrdersResponse };
+const buildSingleOrderResponse = async ([orderData]) => {
+  const order = {};
+  order.id = orderData.id;
+  order.order_products = orderData.order_products;
+  order.productsValue = order.order_products.map((product) => {
+    return product.productQuantity * product.product.price;
+  });
+  order.total = order.productsValue.reduce((acc, curVal) => {
+    return acc + curVal;
+  });
+  delete order.productsValue;
+  order.status = orderData.status;
+  order.paymentMethodId = orderData.paymentMethodId;
+  const user = await getUserBy('id', orderData.userId);
+  order.buyerAddress = user.address;
+  order.buyerName = user.fullname;
+  order.buyerEmail = user.email;
+  order.buyerUsername = user.username;
+  order.buyerPhone = user.phone;
+  return order;
+};
+
+module.exports = { buildOrdersResponse, buildSingleOrderResponse };
