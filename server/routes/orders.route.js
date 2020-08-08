@@ -6,6 +6,7 @@ const {
   orderIsValid,
   orderExist,
   productsExists,
+  statusIsValid,
 } = require('../middlewares/orders.middlewares');
 const {
   tokenIsValid,
@@ -103,6 +104,46 @@ router.get(
       .catch((error) => {
         console.log('error:', error);
       });
+  }
+);
+
+router.put(
+  '/:orderId',
+  tokenIsValid,
+  userIsAdmin,
+  orderExist,
+  statusIsValid,
+  (req, res) => {
+    const orderId = req.params.orderId;
+    const status = req.body.status;
+
+    Order.update(
+      { status: status },
+      {
+        where: {
+          id: orderId,
+        },
+      }
+    ).then(() => {
+      res.json({ success: 'Order status updated' });
+    });
+  }
+);
+
+router.delete(
+  '/:orderId',
+  tokenIsValid,
+  userIsAdmin,
+  orderExist,
+  async (req, res) => {
+    const orderId = req.params.orderId;
+    Order.destroy({
+      where: {
+        id: orderId,
+      },
+    }).then(() => {
+      res.json({ success: 'Order deleted' });
+    });
   }
 );
 

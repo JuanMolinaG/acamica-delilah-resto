@@ -15,4 +15,22 @@ const orderValidation = (data) => {
   return schema.validate(data);
 };
 
-module.exports = { orderValidation };
+// Status validation
+const statusValidation = (data) => {
+  const schema = Joi.object({
+    status: Joi.string()
+      .valid(
+        'Nuevo',
+        'Confirmado',
+        'Preparando',
+        'Enviando',
+        'Entregado',
+        'Cancelado'
+      )
+      .required(),
+  });
+
+  return schema.validate(data);
+};
+
+module.exports = { orderValidation, statusValidation };

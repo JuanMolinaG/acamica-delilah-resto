@@ -1,4 +1,7 @@
-const { orderValidation } = require('../helpers/ordersDataValidation');
+const {
+  orderValidation,
+  statusValidation,
+} = require('../helpers/ordersDataValidation');
 const { getProductBy } = require('../helpers/products.querys');
 const { getOrderBy } = require('../helpers/orders.querys');
 
@@ -41,4 +44,11 @@ const productsExists = async (req, res, next) => {
   });
 };
 
-module.exports = { orderIsValid, orderExist, productsExists };
+const statusIsValid = (req, res, next) => {
+  // Validate the data
+  const { error } = statusValidation(req.body);
+  if (error) return res.status(400).json({ error: error.details[0].message });
+  next();
+};
+
+module.exports = { orderIsValid, orderExist, productsExists, statusIsValid };
