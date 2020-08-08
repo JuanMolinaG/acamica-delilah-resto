@@ -1,0 +1,755 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Delilah Resto",
+    "contact": {},
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/users/login": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Admin login",
+        "operationId": "Adminlogin",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminloginRequest"
+              },
+              "example": {
+                "username_email": "administrator",
+                "password": "123456"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/products": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Admin post product",
+        "operationId": "Adminpostproduct",
+        "parameters": [
+          {
+            "name": "auth-token",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTkzMzg5NDAxfQ.7QBR-4K2NfjpihjmUDMILrRnnkDqGaMXYK9llxp3h7Y"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminpostproductRequest"
+              },
+              "example": {
+                "name": "Hamburguesa doblequeso",
+                "price": 15,
+                "imageUrl": "https://i.ytimg.com/vi/drckCY1hXEE/maxresdefault.jpg"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Admin get products",
+        "operationId": "Admingetproducts",
+        "parameters": [
+          {
+            "name": "auth-token",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTkzMzg5NDAxfQ.7QBR-4K2NfjpihjmUDMILrRnnkDqGaMXYK9llxp3h7Y"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/products/1": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Admin get product",
+        "operationId": "Admingetproduct",
+        "parameters": [
+          {
+            "name": "auth-token",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTkzMzg5NDAxfQ.7QBR-4K2NfjpihjmUDMILrRnnkDqGaMXYK9llxp3h7Y"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "put": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Admin put product",
+        "operationId": "Adminputproduct",
+        "parameters": [
+          {
+            "name": "auth-token",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTkzMzg5NDAxfQ.7QBR-4K2NfjpihjmUDMILrRnnkDqGaMXYK9llxp3h7Y"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminputproductRequest"
+              },
+              "example": {
+                "name": "Hamburguesa doblequeso con tocineta",
+                "price": 25,
+                "imageUrl": "urlToImage"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Admin delete product",
+        "operationId": "Admindeleteproduct",
+        "parameters": [
+          {
+            "name": "auth-token",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTkzMzg5NDAxfQ.7QBR-4K2NfjpihjmUDMILrRnnkDqGaMXYK9llxp3h7Y"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/orders": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Admin post order",
+        "operationId": "Adminpostorder",
+        "parameters": [
+          {
+            "name": "auth-token",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTkzMzkwNDA1fQ.3-RSvHnpyPRMIwSZPNd3sz7PlGIdcUhMKdaLW3FQUU4"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminpostorderRequest"
+              },
+              "example": {
+                "userId": 1,
+                "description": "3 x Hamburguesa doblequeso",
+                "paymentMethodId": 2,
+                "products": [
+                  {
+                    "productId": 1,
+                    "productQuantity": 3
+                  }
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Admin get orders",
+        "operationId": "Admingetorders",
+        "parameters": [
+          {
+            "name": "auth-token",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTkzMzg5NDAxfQ.7QBR-4K2NfjpihjmUDMILrRnnkDqGaMXYK9llxp3h7Y"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/orders/1": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Admin get order",
+        "operationId": "Admingetorder",
+        "parameters": [
+          {
+            "name": "auth-token",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTkzMzg5NDAxfQ.7QBR-4K2NfjpihjmUDMILrRnnkDqGaMXYK9llxp3h7Y"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "put": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Admin put order",
+        "operationId": "Adminputorder",
+        "parameters": [
+          {
+            "name": "auth-token",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTkzMzg5NDAxfQ.7QBR-4K2NfjpihjmUDMILrRnnkDqGaMXYK9llxp3h7Y"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminputorderRequest"
+              },
+              "example": {
+                "status": "Confirmado"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Admin delete order",
+        "operationId": "Admindeleteorder",
+        "parameters": [
+          {
+            "name": "auth-token",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTkzMzg5NDAxfQ.7QBR-4K2NfjpihjmUDMILrRnnkDqGaMXYK9llxp3h7Y"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/products/3": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "User get product",
+        "operationId": "Usergetproduct",
+        "parameters": [
+          {
+            "name": "auth-token",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTkzMzkwNDA1fQ.3-RSvHnpyPRMIwSZPNd3sz7PlGIdcUhMKdaLW3FQUU4"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/orders/4": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "User get order",
+        "operationId": "Usergetorder",
+        "parameters": [
+          {
+            "name": "auth-token",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTkzMzkwNDA1fQ.3-RSvHnpyPRMIwSZPNd3sz7PlGIdcUhMKdaLW3FQUU4"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/users/register": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Registration",
+        "operationId": "Registration",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrationRequest"
+              },
+              "example": {
+                "username": "gabriel.gomez",
+                "fullname": "Gabriel Gómez",
+                "email": "gabriel.gomez@email.co",
+                "phone": 182798345,
+                "address": "Carrera 57 #91-02",
+                "password": 123456
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AdminloginRequest": {
+        "title": "AdminloginRequest",
+        "required": [
+          "username_email",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "username_email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "username_email": "administrator",
+          "password": "123456"
+        }
+      },
+      "AdminpostproductRequest": {
+        "title": "AdminpostproductRequest",
+        "required": [
+          "name",
+          "price",
+          "imageUrl"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "imageUrl": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "name": "Hamburguesa doblequeso",
+          "price": 15,
+          "imageUrl": "https://i.ytimg.com/vi/drckCY1hXEE/maxresdefault.jpg"
+        }
+      },
+      "AdminputproductRequest": {
+        "title": "AdminputproductRequest",
+        "required": [
+          "name",
+          "price",
+          "imageUrl"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "imageUrl": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "name": "Hamburguesa doblequeso con tocineta",
+          "price": 25,
+          "imageUrl": "urlToImage"
+        }
+      },
+      "AdminpostorderRequest": {
+        "title": "AdminpostorderRequest",
+        "required": [
+          "userId",
+          "description",
+          "paymentMethodId",
+          "products"
+        ],
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "description": {
+            "type": "string"
+          },
+          "paymentMethodId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Product"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "userId": 1,
+          "description": "3 x Hamburguesa doblequeso",
+          "paymentMethodId": 2,
+          "products": [
+            {
+              "productId": 1,
+              "productQuantity": 3
+            }
+          ]
+        }
+      },
+      "Product": {
+        "title": "Product",
+        "required": [
+          "productId",
+          "productQuantity"
+        ],
+        "type": "object",
+        "properties": {
+          "productId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "productQuantity": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "example": {
+          "productId": 1,
+          "productQuantity": 3
+        }
+      },
+      "AdminputorderRequest": {
+        "title": "AdminputorderRequest",
+        "required": [
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "status": "Confirmado"
+        }
+      },
+      "UserloginRequest": {
+        "title": "UserloginRequest",
+        "required": [
+          "username_email",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "username_email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "username_email": "juan.molina",
+          "password": "123456"
+        }
+      },
+      "UserpostorderRequest": {
+        "title": "UserpostorderRequest",
+        "required": [
+          "userId",
+          "description",
+          "paymentMethodId",
+          "products"
+        ],
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "description": {
+            "type": "string"
+          },
+          "paymentMethodId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Product"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "userId": 2,
+          "description": "2 x Hamburguesa sencilla, 3 x Hamburguesa doblequeso",
+          "paymentMethodId": 2,
+          "products": [
+            {
+              "productId": 2,
+              "productQuantity": 2
+            },
+            {
+              "productId": 1,
+              "productQuantity": 3
+            }
+          ]
+        }
+      },
+      "RegistrationRequest": {
+        "title": "RegistrationRequest",
+        "required": [
+          "username",
+          "fullname",
+          "email",
+          "phone",
+          "address",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "fullname": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "username": "gabriel.gomez",
+          "fullname": "Gabriel Gómez",
+          "email": "gabriel.gomez@email.co",
+          "phone": 182798345,
+          "address": "Carrera 57 #91-02",
+          "password": 123456
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Admin"
+    },
+    {
+      "name": "User"
+    }
+  ]
+}
