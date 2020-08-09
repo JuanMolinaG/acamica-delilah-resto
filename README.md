@@ -26,7 +26,7 @@ Next import the server/delilah_resto.sql file in your mysql installation and rep
 ## Start and Watch
 
 ```bash
-npm start
+npm run startDev
 ```
 
 After start the server go to http://localhost:3000/api/docs in the browser to see the API documentation
