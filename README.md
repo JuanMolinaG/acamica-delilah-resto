@@ -8,11 +8,12 @@ Last update: Aug 8, 2020.
 
 ## Installation
 
-Clone the repo and cd into the folder:
+Clone the repo and move to the server folder:
 
 ```bash
 git clone https://github.com/JuanMolinaG/acamica-delilah-resto.git
 cd acamica-delilah-resto
+cd server
 ```
 
 Install the dependencies:
@@ -21,7 +22,7 @@ Install the dependencies:
 npm install
 ```
 
-Next import the server/delilah_resto.sql file in your mysql installation and replace the database connection credentials with yours in server/.env file.
+Next import the delilah_resto.sql file in your mysql installation and replace the database connection credentials with yours in .env file.
 
 ## Start and Watch
 
