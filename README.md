@@ -32,6 +32,10 @@ npm run startDev
 
 After start the server go to http://localhost:3000/api/docs in the browser to see the API documentation
 
+## Test users
+
+You can find the credentials of the test users in the file test_users.txt
+
 ## Language and Tools
 
 - [NodeJs](https://nodejs.org/)

@@ -1,0 +1,11 @@
+User with administrator role:
+{
+    "username_email": "administrator",
+    "password": "123456"
+}
+
+User with customer role:
+{
+    "username_email": "juan.molina",
+    "password": "123456"
+}
